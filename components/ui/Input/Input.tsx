@@ -1,0 +1,35 @@
+import React, { InputHTMLAttributes } from "react";
+import { useField } from "formik";
+import s from "./Input.module.css";
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  name: string;
+  label: string;
+}
+
+const Input: React.FC<InputProps> = (props) => {
+  const [field, { error, touched }] = useField(props);
+
+  return (
+    <>
+      <div>
+        <label htmlFor={props.name} className={s.label}>
+          {" "}
+          {props.name}
+        </label>
+        <input
+          className={s.input}
+          type={props.name}
+          placeholder={props.placeholder}
+          {...props}
+          {...field}
+        />
+      </div>
+      {error && touched ? (
+        <div className="mt-2 text-pink-600 text-sm">{error}</div>
+      ) : null}
+    </>
+  );
+};
+
+export default Input;
