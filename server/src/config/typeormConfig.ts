@@ -15,6 +15,6 @@ export const DbConfig: TypeOrmModuleOptions =
         username: 'postgres',
         password: 'postgres',
         database: 'localdb1',
-        entities: [__dirname + '/./typeorm/*.entity.{ts,js}'],
+        entities: [__dirname + '/./../typeorm/*.entity.{ts,js}'],
         synchronize: true,
       };

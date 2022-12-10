@@ -1,23 +1,24 @@
-import { Module } from '@nestjs/common';
+import { Module, CacheModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DbConfig } from './dbconfig';
+import { DbConfig } from './config/typeormConfig';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
-import { CategoriesService } from './categories/categories.service';
-import { CategoriesController } from './categories/categories.controller';
-import { CategoriesModule } from './categories/categories.module';
+import { OrdersModule } from './orders/orders.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(DbConfig),
+    CacheModule.register({ isGlobal: true, ttl: 1000 * 60 * 60 * 24 * 365 }),
     UsersModule,
     AuthModule,
     ProductsModule,
-    CategoriesModule,
+    OrdersModule,
+    CartModule,
   ],
   controllers: [AppController],
   providers: [AppService],

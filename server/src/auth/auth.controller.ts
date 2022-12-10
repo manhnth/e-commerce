@@ -38,16 +38,16 @@ export class AuthController {
   async signup(@Body() createUserDto: CreateUserDto) {
     try {
       const user = await this.userService.create(createUserDto);
+
       return user;
     } catch (error) {
       console.log('error in auth controller', error);
-      if (error.driverError.code === '23505') {
+      if (error.driverError?.code === '23505') {
         throw new BadRequestException('Email already exist', {
           cause: new Error(),
           description: 'Some error description',
         });
       }
-      return error;
     }
   }
 

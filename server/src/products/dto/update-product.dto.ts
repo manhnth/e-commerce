@@ -1,4 +1,3 @@
-import { CategoryEnum } from './../../typeorm/product.entity';
 import {
   IsEnum,
   IsNotEmpty,
@@ -7,33 +6,26 @@ import {
   MinLength,
 } from 'class-validator';
 import { extname } from 'path';
+import { CategoryEnum } from 'src/typeorm/product.entity';
 
-export class CreateProductDto {
+export class UpdateProductDto {
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(20)
   name: string;
 
   @IsNotEmpty()
-  // @IsNumberString()
+  @IsNumberString()
   price: number;
 
   @IsNotEmpty()
-  // @IsNumberString()
+  @IsNumberString()
   inventory: number;
 
-  createAt?: Date;
-
-  updateAt?: Date;
-
-  @IsNotEmpty()
   category: CategoryEnum;
 
   @IsNotEmpty()
   @MaxLength(400)
   @MinLength(15)
   description: string;
-
-  @IsNotEmpty()
-  imgUrl: string;
 }
