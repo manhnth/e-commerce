@@ -4,9 +4,14 @@
   box-sizing: inherit;
 }
 
-html, 
+html,
 body {
   height: 100%;
   box-sizing: border-box;
-  color: #111827;
+  color: #233656;
+}
+
+body {
+  max-width: 1536px;
+  margin: 0 auto;
 }

@@ -12,6 +12,7 @@ export enum CategoryEnum {
   MAY_DO_DUONG_HUYET = 'Máy đo đường huyết',
   MAY_XONG_KHI_DUNG = 'Máy xông khí dung',
   THIET_BI_Y_TE_KHAC = 'Thiết bị y tế khác',
+  DUNG_CU_KIEM_TRA = 'Dụng cụ kiểm tra',
 }
 @Entity()
 export class Product {

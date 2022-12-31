@@ -1,9 +1,12 @@
 import { Form, Formik } from "formik";
 import React from "react";
-import { register } from "../../services/auth";
+import { register } from "../../lib/api/auth";
 import Input from "../ui/Input";
 import * as Yup from "yup";
 import { Button } from "@components/ui/Button/Button";
+import { useUI } from "@components/ui/context";
+import { useShopping } from "lib/contexts/ShoppingContext";
+import MainLogo from "../../assets/logo.png";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -18,6 +21,8 @@ const SignupSchema = Yup.object().shape({
 });
 
 const SignupView: React.FC = () => {
+  const { closeModal } = useUI();
+  const { setIsUser } = useShopping();
   const initialValues = {
     name: "",
     email: "",
@@ -30,28 +35,30 @@ const SignupView: React.FC = () => {
       validationSchema={SignupSchema}
       onSubmit={async (values, actions) => {
         const res = await register(values);
+        actions.setSubmitting(false);
+        console.log(res);
 
         if (res.error) {
           actions.setErrors({
             email: res.message,
           });
         }
-        actions.setSubmitting(false);
+        if (res.status === 201) {
+          closeModal();
+
+          setIsUser(true);
+        }
       }}
     >
-      <Form className="w-80 flex flex-col justify-between">
-        <span className="block mx-auto text-2xl pb-6">Dang ky</span>
-        <Input type="name" label="name" name="name" placeholder="name" />
-        <Input type="email" label="email" name="email" placeholder="email" />
-        <Input
-          type="password"
-          label="password"
-          name="password"
-          placeholder="***********"
-        />
-        <Button type="submit" className="pb-4">
-          Dang Ky
-        </Button>
+      <Form className="flex w-80 flex-col justify-between">
+        <img src={MainLogo.src} alt="farmacity" className="mx-auto w-40 pb-6" />
+        <span className="mx-auto block pb-6 text-2xl">Đăng ký</span>
+        <Input type="name" name="name" placeholder="tên khách hàng" />
+        <Input type="email" name="email" placeholder="email" />
+        <Input type="password" name="password" placeholder="mật khẩu" />
+        <span className="flex justify-center pt-6">
+          <Button type="submit">Đăng ký ngay</Button>
+        </span>
       </Form>
     </Formik>
   );

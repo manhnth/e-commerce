@@ -1,0 +1,29 @@
+.root {
+  @apply relative w-full border border-gray-200 text-sm text-base transition-colors duration-150;
+}
+
+.input {
+  @apply w-full appearance-none bg-transparent px-3 py-2 pr-10 transition duration-150 ease-in-out;
+}
+
+.input::placeholder {
+  @apply text-gray-400;
+}
+
+.input:focus {
+  @apply outline outline-2 outline-offset-2 outline-gray-100;
+}
+
+.iconContainer {
+  @apply pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3;
+}
+
+.icon {
+  @apply h-5 w-5;
+}
+
+@screen sm {
+  .input {
+    min-width: 300px;
+  }
+}

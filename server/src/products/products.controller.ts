@@ -25,12 +25,42 @@ export class ProductsController {
 
   @Get('all')
   async fetchProducts() {
-    return this.productService.fetchProducts();
+    return this.productService.all();
   }
 
-  @Get('findByCategory')
-  async fetchProductsByCategory(@Query() query: string) {
-    return await this.productService.fetchProductsByCategory(query);
+  @Get('search')
+  async findProduct(@Query() query: any) {
+    const { category, sort, q } = query;
+    const builder = await this.productService.queryBuilder('product');
+
+    if (category) {
+      builder.where('product.category=:c', { c: category });
+    }
+
+    if (q) {
+      builder.where('product.name LIKE :q OR product.description LIKE :q', {
+        q: `%${q}%`,
+      });
+    }
+
+    if (sort) {
+      builder.orderBy('product.price', sort.toUpperCase());
+    } else {
+      builder.orderBy('product.createAt', 'DESC');
+    }
+
+    const page: number = parseInt(query.page as any) || 1;
+    const perPage: number = parseInt(query.perPage as any) || 9;
+    const total = await builder.getCount();
+
+    builder.offset((page - 1) * perPage).limit(perPage);
+
+    return {
+      data: await builder.getMany(),
+      total,
+      page,
+      last_page: Math.ceil(total / perPage),
+    };
   }
 
   @Get(':id')

@@ -1,0 +1,14 @@
+.button {
+  @apply flex justify-between w-full rounded-sm border border-gray-300 px-4 py-3 bg-gray-50    text-sm leading-5 font-medium text-gray-600 hover:text-accent-5 focus:outline-none focus:shadow-sm focus:shadow-outline-normal active:bg-gray-100 active:text-gray-400 transition ease-in-out duration-150 capitalize;
+}
+
+.button[data-active] {
+}
+
+.list {
+  @apply origin-top-left absolute lg:relative left-0 mt-2 w-full rounded-md shadow-lg lg:shadow-none z-10 mb-10 pb-5 bg-white lg:block;
+}
+
+.listItem {
+  @apply block text-sm leading-5 text-gray-500 lg:text-base lg:no-underline outline-none focus:text-gray-800 lg:hover:bg-transparent hover:text-gray-800 underline;
+}

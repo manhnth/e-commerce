@@ -24,7 +24,7 @@ export class ProductsService {
     await this.productsRepository.save(product);
   }
 
-  async fetchProducts() {
+  async all() {
     return await this.productsRepository.find();
   }
 
@@ -34,6 +34,10 @@ export class ProductsService {
 
   async fetchProductsByCategory(category: any) {
     return (await this.productsRepository.findBy(category)) || null;
+  }
+
+  async queryBuilder(alias: string) {
+    return this.productsRepository.createQueryBuilder(alias);
   }
 
   async updateProduct(updateProductDto: UpdateProductDto, product: Product) {

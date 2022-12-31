@@ -27,9 +27,6 @@ export class Order {
   @Column()
   place: string;
 
-  @Column()
-  state: string;
-
   @Column({ nullable: true })
   street: string;
 

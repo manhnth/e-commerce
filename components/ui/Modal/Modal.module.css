@@ -15,9 +15,9 @@
 }
 
 .close:hover {
-  @apply text-gray-500
+  @apply text-gray-500;
 }
 
 .close:focus {
-  @apply outline-none
+  @apply outline-none;
 }

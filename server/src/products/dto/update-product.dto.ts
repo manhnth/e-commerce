@@ -9,23 +9,23 @@ import { extname } from 'path';
 import { CategoryEnum } from 'src/typeorm/product.entity';
 
 export class UpdateProductDto {
-  @IsNotEmpty()
+  // @IsNotEmpty()
   @MinLength(3)
   @MaxLength(20)
-  name: string;
+  name?: string;
 
-  @IsNotEmpty()
+  // @IsNotEmpty()
   @IsNumberString()
-  price: number;
+  price?: number;
 
-  @IsNotEmpty()
+  // @IsNotEmpty()
   @IsNumberString()
-  inventory: number;
+  inventory?: number;
 
-  category: CategoryEnum;
+  category?: CategoryEnum;
 
-  @IsNotEmpty()
+  // @IsNotEmpty()
   @MaxLength(400)
   @MinLength(15)
-  description: string;
+  description?: string;
 }

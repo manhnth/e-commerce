@@ -14,13 +14,17 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthService } from './auth.service';
 import { Request, Response } from 'express';
+import { MailerService } from '@nestjs-modules/mailer';
+import { v4 } from 'uuid';
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly userService: UsersService,
     private authService: AuthService,
+    private readonly mailerService: MailerService,
   ) {}
+
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Req() req: Request, @Res() res: Response) {
@@ -41,7 +45,6 @@ export class AuthController {
 
       return user;
     } catch (error) {
-      console.log('error in auth controller', error);
       if (error.driverError?.code === '23505') {
         throw new BadRequestException('Email already exist', {
           cause: new Error(),
@@ -54,6 +57,8 @@ export class AuthController {
   @Get('refresh')
   async refreshToken(@Req() req: Request, @Res() res: Response) {
     const { refresh_token } = req.cookies;
+
+    if (!refresh_token) return;
 
     const user = await this.authService.verifyRefreshToken(refresh_token);
 
@@ -68,6 +73,42 @@ export class AuthController {
       httpOnly: true,
     });
     return res.send({ access_token });
+  }
+
+  @Post('logout')
+  async logout(@Res() res: Response) {
+    res.cookie('refresh_token', 'logout', {
+      maxAge: 1000,
+      httpOnly: true,
+    });
+
+    res.send({ message: 'logged out!' });
+  }
+
+  @Post('resetPassword')
+  async resetPassword(@Body() email: string) {
+    const user = await this.userService.findOne(email);
+
+    if (!user) {
+      throw new BadRequestException(`Not found user with email: ${email}`);
+    }
+
+    const resetToken = v4();
+    const res = await this.mailerService
+      .sendMail({
+        to: 'thmanh2k@gmail.com', // list of receivers
+        from: 'ntmanhvp2k@gmail.com', // sender address
+        subject: 'Testing Nest MailerModule ✔', // Subject line
+        text: 'welcome', // plaintext body
+        html: '<b>welcome</b>', // HTML body content
+      })
+      .then(() => {
+        console.log('ok');
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return res;
   }
 
   @UseGuards(JwtAuthGuard)

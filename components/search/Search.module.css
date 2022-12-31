@@ -1,0 +1,11 @@
+.filter_div {
+  @apply absolute left-0 z-10 mt-2 mb-10 w-full origin-top-left rounded-md bg-white shadow-lg lg:relative lg:block lg:shadow-none;
+}
+
+.filter_span {
+  @apply flex w-full justify-between rounded-sm border border-gray-300 px-4 py-3 text-sm font-medium capitalize leading-5 text-gray-600 hover:text-gray-800;
+}
+
+.list_item {
+  @apply block pb-3 text-sm leading-5 text-gray-500 outline-none hover:text-gray-800 focus:text-gray-800 lg:text-base lg:hover:bg-transparent;
+}

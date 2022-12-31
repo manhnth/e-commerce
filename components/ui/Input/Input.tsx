@@ -4,7 +4,6 @@ import s from "./Input.module.css";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  label: string;
 }
 
 const Input: React.FC<InputProps> = (props) => {
@@ -12,11 +11,7 @@ const Input: React.FC<InputProps> = (props) => {
 
   return (
     <>
-      <div>
-        <label htmlFor={props.name} className={s.label}>
-          {" "}
-          {props.name}
-        </label>
+      <div className="pt-4">
         <input
           className={s.input}
           type={props.name}
