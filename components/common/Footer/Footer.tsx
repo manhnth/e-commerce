@@ -7,7 +7,7 @@ interface FooterProps {}
 
 export const Footer: React.FC<FooterProps> = ({}) => {
   return (
-    <div className="mt-40">
+    <div className="mt-6">
       <div className="grid grid-cols-6 border-t-4 border-blue-500 px-8 pt-12 lg:grid-cols-12 lg:px-36">
         <div className="col-span-1 hidden lg:col-span-2 lg:block">
           <img src={MainLogo.src} alt="main logo" className="w-32" />
@@ -28,6 +28,7 @@ export const Footer: React.FC<FooterProps> = ({}) => {
           <Link
             href="https://www.facebook.com/profile.php?id=100024174710143"
             target="_blank"
+            rel="noreferrer"
             className="flex w-fit cursor-pointer gap-2"
           >
             <Facebook />
@@ -36,6 +37,7 @@ export const Footer: React.FC<FooterProps> = ({}) => {
           <a
             href="https://twitter.com/wuemengg"
             target="_blank"
+            rel="noreferrer"
             className="flex w-fit cursor-pointer gap-2"
           >
             <Twitter />
@@ -44,6 +46,7 @@ export const Footer: React.FC<FooterProps> = ({}) => {
           <a
             href="https://www.linkedin.com/in/manh-nguyen-65807b236/"
             target="_blank"
+            rel="noreferrer"
             className="flex w-fit cursor-pointer gap-2"
           >
             <Linkedin />
@@ -60,6 +63,7 @@ export const Footer: React.FC<FooterProps> = ({}) => {
         <div className="col-span-2 w-fit lg:col-span-2">
           <a
             target="_blank"
+            rel="noreferrer"
             href="https://github.com/manhnth"
             className="flex gap-2"
           >

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { fetcherWithToken } from "./axiosApi";
+import { axiosWithToken } from "./axiosApi";
 
 export const getCartItems = async () => {
   const res = await axios.get("cart");
@@ -13,8 +13,8 @@ export const setCartItems = async () => {
   return res.data;
 };
 
-export const fetchCart = async (url: string) => {
-  return await fetcherWithToken
+export const fetchWithToken = async (url: string) => {
+  return await axiosWithToken
     .get(url)
     .then((res) => res.data)
     .catch((err) => null);

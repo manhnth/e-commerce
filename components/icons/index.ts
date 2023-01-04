@@ -14,3 +14,4 @@ export * from "./Address";
 export * from "./Alarm";
 export * from "./Phone";
 export * from "./MailFill";
+export * from "./Order";

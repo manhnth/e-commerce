@@ -1,8 +1,7 @@
 import { refresh } from "lib/api/auth";
-import { fetcherWithToken } from "lib/api/axiosApi";
-import { fetchCart } from "lib/api/cart";
-import { useUser } from "lib/hooks/useUser";
-import { AddToCartProps } from "lib/types";
+import { axiosWithToken } from "lib/api/axiosApi";
+import { fetchWithToken } from "lib/api/cart";
+import { AddToCartProps, CreateOrderProps } from "lib/types";
 import React, { useContext, useEffect, useState } from "react";
 import { createContext, ReactNode } from "react";
 import useSWRMutation from "swr/mutation";
@@ -22,24 +21,50 @@ const initialState = {
 export const ShoppingContext = createContext<State | any>(initialState);
 
 export const ShoppingProvider: React.FC<{ children?: ReactNode }> = (props) => {
+  const [isUser, setIsUser] = useState(false);
   const {
     data: cartData,
     trigger: triggerCart,
     error: cartError,
     isMutating,
-  } = useSWRMutation("cart", fetchCart, {});
-  // const { isUser, user, setIsUser } = useUser();
-  const [subTotal, setSubtotal] = useState(0);
-  const [isUser, setIsUser] = useState(false);
+  } = useSWRMutation(isUser ? "cart" : null, fetchWithToken, {});
 
   const addItemToCart = async (props: AddToCartProps) => {
     try {
-      const res = await fetcherWithToken.post("cart/addItem", { ...props });
+      const res = await axiosWithToken.post("cart/addItem", { ...props });
       triggerCart();
       return res;
     } catch (error) {
       return null;
     }
+  };
+
+  const updateCartItemQuantity = async (
+    type: string,
+    cartItemId: number,
+    productId: number
+  ) => {
+    const res = await axiosWithToken.post("cart/updateCartItemQuantity", {
+      type,
+      cartItemId,
+      productId,
+    });
+    await triggerCart();
+    return res;
+  };
+
+  const deleteCartItem = async (cartItemId: number) => {
+    await axiosWithToken.delete(`cart/delete/${cartItemId}`);
+    await triggerCart();
+  };
+
+  const createOrder = async (createOrderProps: CreateOrderProps) => {
+    const res = await axiosWithToken.post("/orders/create", {
+      ...createOrderProps,
+    });
+    if (!res || res.status !== 201) return null;
+    await triggerCart();
+    return res;
   };
 
   const fetchUser = async () => {
@@ -56,7 +81,7 @@ export const ShoppingProvider: React.FC<{ children?: ReactNode }> = (props) => {
   }, []);
 
   useEffect(() => {
-    triggerCart();
+    isUser && triggerCart();
   }, [isUser]);
 
   const value = {
@@ -65,6 +90,10 @@ export const ShoppingProvider: React.FC<{ children?: ReactNode }> = (props) => {
     isMutating,
     setIsUser,
     isUser,
+    updateCartItemQuantity,
+    triggerCart,
+    deleteCartItem,
+    createOrder,
   };
 
   return <ShoppingContext.Provider value={value} {...props} />;

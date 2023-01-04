@@ -1,7 +1,7 @@
 import Link from "next/link";
 import axios from "axios";
 import { products } from "constants/mock-data";
-import { CATEGORIES } from "constants/categories";
+import { CATEGORIES } from "constants/data";
 import { useUI } from "../components/ui/context";
 import Container from "@components/ui/Container";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
@@ -22,17 +22,21 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 export default function Home({
   newProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { openModal, setModalView } = useUI();
-  // const imgUrl = img.src as string;
-  const handleClick = () => {
-    openModal();
-    setModalView("LOGIN_VIEW");
-  };
+  // const { openModal, setModalView } = useUI();
+  // const handleClick = () => {
+  //   openModal();
+  //   setModalView("LOGIN_VIEW");
+  // };
 
-  const setProducts = () => {
-    products.map((p) => axios.post("products/create", { ...p }));
-  };
+  // const setProducts = () => {
+  //   // products.map((p) =>
+  //   //   setTimeout(() => axios.post("products/create", { ...p }), 3000)
+  //   // );
+  // };
   return (
+    // <div>
+    //   <button onClick={() => setProducts()}>create</button>
+    // </div>
     <>
       {/* hero section */}
       <div
@@ -123,11 +127,9 @@ export default function Home({
         <Container>
           <div className="grid translate-y-2/4 justify-between gap-2 lg:flex">
             <div className="w-72 rounded-lg bg-gray-400 p-10">
-              <div className="grid">
-                <Address />
-                <span className="font-bold">We are here</span>
-                <p>Dong Da, Ha Noi, Viet Nam</p>
-              </div>
+              <Address />
+              <span className="font-bold">We are here</span>
+              <p>Dong Da, Ha Noi, Viet Nam</p>
             </div>
             <div className="w-72 rounded-lg bg-gray-400 p-10 pb-24">
               <Phone />
@@ -149,7 +151,7 @@ export default function Home({
       </div>
       {/* contact section */}
       <Container>
-        <div className="items-center justify-between pt-24 lg:flex">
+        <div className="items-center justify-between py-24 lg:flex">
           <div>
             Nhập <strong>Email </strong>
             để nhận thông tin khuyến mãi từ Farmacity

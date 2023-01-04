@@ -8,11 +8,11 @@ import cn from "clsx";
 import { getStaticProps } from "pages/search/[category]";
 import { useSearch } from "lib/hooks/useSearch";
 import { useSearchMeta } from "lib/search";
-import { SORTS } from "constants/sorts";
 
 import Container from "../ui/Container";
 import { ProductCard } from "@components/product/ProductCard/ProductCard";
 import { ArrowDown } from "@components/icons/ArrowDown";
+import { SORTS } from "constants/data";
 
 export default function Search({
   CATEGORIES,
@@ -22,7 +22,7 @@ export default function Search({
 
   const router = useRouter();
 
-  const { q, sort } = router.query;
+  const { q, sort, cat } = router.query;
 
   const { pathname, category } = useSearchMeta(router.asPath);
 
@@ -31,7 +31,7 @@ export default function Search({
 
   const { data, error } = useSearch({
     search: typeof q === "string" ? q : "",
-    categoryName: activeCategory?.name,
+    categoryName: activeCategory?.name || (cat as string),
     sort: typeof sort === "string" ? sort : "",
   });
 

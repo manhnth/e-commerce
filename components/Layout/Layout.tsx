@@ -6,10 +6,10 @@ import { SignupView, LoginView, ForgotView } from "@components/auth/";
 import { NavBar } from "@components/common/NavBar/NavBar";
 import { LinkProps } from "next/link";
 import Sidebar from "@components/ui/Sidebar";
-import { NAVBAR_LINKS } from "constants/navbarlinks";
 import CartSidebarView from "@components/cart/CartSidebarView";
 import { ShoppingProvider } from "lib/contexts/ShoppingContext";
 import { Footer } from "@components/common/Footer";
+import { NAVBAR_LINKS } from "constants/data";
 
 interface LayoutProps {
   children?: ReactNode;

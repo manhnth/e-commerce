@@ -4,7 +4,7 @@ import {
   InferGetStaticPropsType,
 } from "next";
 import Search from "@components/search/Search";
-import { CATEGORIES } from "constants/categories";
+import { CATEGORIES } from "constants/data";
 
 export function getStaticProps(context: GetStaticPropsContext) {
   return {

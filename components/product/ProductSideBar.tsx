@@ -39,8 +39,8 @@ export const ProductSideBar: React.FC<ProductSideBarProps> = ({
   };
 
   return (
-    <div>
-      <div className="flex-col">
+    <div className="h-screen w-full lg:max-h-96">
+      <div className="flex h-full flex-col lg:justify-between">
         <div className="border-b-2 border-gray-300 pt-4 pb-6 md:h-2/3 md:py-0">
           <h3 className="font-bold md:text-2xl lg:text-xl">{name}</h3>
           <span className="block py-4 text-2xl text-green-500">
@@ -49,8 +49,8 @@ export const ProductSideBar: React.FC<ProductSideBarProps> = ({
           <p className="block max-w-lg text-gray-500">{description}</p>
           <div className="flex"></div>
         </div>
-        <div className="mt-8 h-1/3">
-          <div className="mb-6 flex w-fit items-center justify-center gap-4">
+        <div className="my-8">
+          <div className="mb-6 flex w-fit justify-center gap-4">
             <div
               onClick={(e) => changeQuantity(e, "dec")}
               className="cursor-pointer rounded-full border border-gray-400"
@@ -67,7 +67,7 @@ export const ProductSideBar: React.FC<ProductSideBarProps> = ({
           </div>
           <button
             onClick={handleAddToCart}
-            disabled={isMutating}
+            disabled={isMutating || quantity === 0}
             className="text-md inline-block rounded-md bg-blue-500 py-2 px-3 text-white hover:bg-blue-700 hover:shadow-md"
           >
             Thêm vào giỏ hàng

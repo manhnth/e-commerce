@@ -36,7 +36,6 @@ const SignupView: React.FC = () => {
       onSubmit={async (values, actions) => {
         const res = await register(values);
         actions.setSubmitting(false);
-        console.log(res);
 
         if (res.error) {
           actions.setErrors({

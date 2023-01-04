@@ -3,9 +3,9 @@ import { getAccessToken } from "./TokenStore";
 
 export const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-export const fetcherWithToken = axios.create();
+export const axiosWithToken = axios.create();
 
-fetcherWithToken.interceptors.request.use(
+axiosWithToken.interceptors.request.use(
   async (config) => {
     if (config.url === "auth/login" || config.url === "auth/register")
       return config;

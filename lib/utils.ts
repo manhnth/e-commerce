@@ -12,3 +12,11 @@ export function formatCurrency(amount: number) {
     currency: "VND",
   }).format(amount);
 }
+
+export function calculateSubtotal(cart: any) {
+  let subtotal = 0;
+  cart.map((item: any, i: number) => {
+    subtotal = item.product.price * item.quantity;
+  });
+  return subtotal;
+}

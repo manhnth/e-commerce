@@ -1,4 +1,4 @@
-import { fetcherWithToken } from "./axiosApi";
+import { axiosWithToken } from "./axiosApi";
 import { setAccessToken } from "./TokenStore";
 import axios from "axios";
 
@@ -21,7 +21,6 @@ export const login = async (loginParams: LoginParamsType) => {
 
     return res;
   } catch (error: any) {
-    console.log(error.response.data);
     return error.response.data;
   }
 };
@@ -49,7 +48,7 @@ export const refresh = async () => {
 };
 
 export const me = async () => {
-  const res = await fetcherWithToken.get("auth/profile");
+  const res = await axiosWithToken.get("auth/profile");
 
   if (!res) return null;
 

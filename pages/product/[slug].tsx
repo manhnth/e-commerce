@@ -8,7 +8,10 @@ export default function Slug() {
   const router = useRouter();
   const { slug } = router.query;
 
-  const { data, error, isLoading } = useSwr(`products/${slug}`, fetcher);
+  const { data, error, isLoading } = useSwr(
+    slug ? `products/${slug}` : null,
+    fetcher
+  );
 
   // const { data, error, updateProduct } = useProduct(slug);
 

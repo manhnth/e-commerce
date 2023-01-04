@@ -12,3 +12,11 @@ export interface AddToCartProps {
   productId: number;
   quantity: number;
 }
+
+export interface CreateOrderProps {
+  fullName: string;
+  city: string;
+  street: string;
+  place: string;
+  telephone: number;
+}
