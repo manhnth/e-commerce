@@ -10,7 +10,7 @@ import { useSearch } from "lib/hooks/useSearch";
 import { useSearchMeta } from "lib/search";
 
 import Container from "../ui/Container";
-import { ProductCard } from "@components/product/ProductCard/ProductCard";
+import { ProductCard } from "@components/product/ProductCard";
 import { ArrowDown } from "@components/icons/ArrowDown";
 import { SORTS } from "constants/data";
 

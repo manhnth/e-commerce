@@ -1,4 +1,4 @@
-import { ProductView } from "@components/product/ProductCard/ProductView";
+import { ProductView } from "@components/product/ProductView";
 import { fetcher } from "lib/api/axiosApi";
 import { useRouter } from "next/router";
 import { useEffect } from "react";

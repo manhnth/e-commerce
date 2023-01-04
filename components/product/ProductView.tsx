@@ -3,7 +3,7 @@ import Container from "@components/ui/Container";
 import { Product } from "lib/types";
 import Link from "next/link";
 import React from "react";
-import { ProductSideBar } from "../ProductSideBar";
+import { ProductSideBar } from "./ProductSideBar";
 
 interface ProductViewProps {
   product: Product;
