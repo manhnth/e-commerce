@@ -1,8 +1,4 @@
-import {
-  GetStaticPathsResult,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-} from "next";
+import { GetStaticPropsContext } from "next";
 import Search from "@components/search/Search";
 import { CATEGORIES } from "constants/data";
 
