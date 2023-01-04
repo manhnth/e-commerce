@@ -99,7 +99,11 @@ export default function Home({
                 >
                   <div className="rounded-md bg-white p-2 pt-2 pb-8 shadow-md transition hover:shadow-xl">
                     <picture>
-                      <img src={p.imgUrl} alt={p.name} className="w-36" />
+                      <img
+                        src={p.imgUrl}
+                        alt={p.name}
+                        className="w-24 md:w-36"
+                      />
                     </picture>
                     <p className="inline-block pt-2">
                       {truncateString(p.name, 20)}
