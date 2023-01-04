@@ -1,5 +1,5 @@
 import React from "react";
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@components/CheckoutForm";
 import { useRouter } from "next/router";
@@ -28,9 +28,9 @@ export default function Checkout() {
   }, []);
 
   const appearance = {
-    theme: "stripe",
+    theme: "stripe" as const,
   };
-  const options = {
+  const options: StripeElementsOptions = {
     clientSecret,
     appearance,
   };

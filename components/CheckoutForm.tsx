@@ -96,7 +96,10 @@ export default function CheckoutForm({ orderId }: CheckoutFormProps) {
         onChange={(e: any) => setEmail(e.target?.value || "no error")}
       />
       <div className="">
-        <PaymentElement id="payment-element" options={paymentElementOptions} />
+        <PaymentElement
+          id="payment-element"
+          //  options={paymentElementOptions}
+        />
       </div>
       <button
         disabled={isLoading || !stripe || !elements}

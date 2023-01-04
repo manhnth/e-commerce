@@ -1,11 +1,12 @@
 import { axiosWithToken } from "lib/api/axiosApi";
 import { useShopping } from "lib/contexts/ShoppingContext";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
 interface indexProps {}
 
-const index: React.FC<indexProps> = ({}) => {
+const Index: React.FC<indexProps> = ({}) => {
   return (
     <div className="mt-10 flex items-center">
       <div className="bg-white p-6  md:mx-auto">
@@ -27,12 +28,12 @@ const index: React.FC<indexProps> = ({}) => {
           </p>
           <p> Have a great day! </p>
           <div className="py-10 text-center">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="bg-indigo-600 px-12 py-3 font-semibold text-white hover:bg-indigo-500"
             >
               GO BACK
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -40,4 +41,4 @@ const index: React.FC<indexProps> = ({}) => {
   );
 };
 
-export default index;
+export default Index;
