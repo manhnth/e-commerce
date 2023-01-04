@@ -1,13 +1,11 @@
 import Link from "next/link";
 import axios from "axios";
-import { products } from "constants/mock-data";
 import { CATEGORIES } from "constants/data";
-import { useUI } from "../components/ui/context";
 import Container from "@components/ui/Container";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { formatCurrency, truncateString } from "lib/utils";
 import { ArrowEast } from "@components/icons/ArrowEast";
-import { Address, Alarm, Mail, MailFill, Phone } from "@components/icons";
+import { Address, Alarm, MailFill, Phone } from "@components/icons";
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const res = await axios.get("products/search/?page=1&&perPage=6");
