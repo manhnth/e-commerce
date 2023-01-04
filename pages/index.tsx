@@ -8,8 +8,10 @@ import { ArrowEast } from "@components/icons/ArrowEast";
 import { Address, Alarm, MailFill, Phone } from "@components/icons";
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-  const res = await axios.get("products/search/?page=1&&perPage=6");
-  const newProducts = res.data.data;
+  const res = await fetch(
+    "https://farmacity-server-production.up.railway.app/products/search/?page=1&&perPage=6"
+  );
+  const newProducts = await res.json().then((res) => res.data);
 
   return {
     props: { newProducts },
