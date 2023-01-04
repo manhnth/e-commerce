@@ -57,7 +57,7 @@ const LoginView: React.FC = () => {
         <div className="mt-6 mb-3 flex items-center justify-between">
           <Button type="submit">Đăng nhập</Button>
           <a
-            className="inline-block align-baseline text-sm font-bold text-blue-500 hover:text-blue-700"
+            className="inline-block cursor-pointer align-baseline text-sm font-bold text-blue-500 hover:text-blue-700"
             onClick={() => setModalView("FORGOT_VIEW")}
           >
             Quên mật khẩu?
