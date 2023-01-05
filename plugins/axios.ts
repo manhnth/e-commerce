@@ -1,8 +1,9 @@
 import axios from "axios";
 import { API_URL } from "constants/env";
 
-axios.defaults.baseURL = "https://farmacity-server-production.up.railway.app";
-// API_URL;
+axios.defaults.baseURL =
+  //  "https://farmacity-server-production.up.railway.app";
+  API_URL;
 
 axios.defaults.withCredentials = true;
 
