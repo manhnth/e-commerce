@@ -20,7 +20,7 @@ const Index: React.FC<indexProps> = ({}) => {
   if (error) return <div>error</div>;
 
   return (
-    <div className="mx-auto mt-8 max-w-2xl">
+    <div className="mx-auto mt-8 h-screen max-w-2xl">
       <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
         <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
           <tr>

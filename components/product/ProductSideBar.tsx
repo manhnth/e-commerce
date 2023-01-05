@@ -1,4 +1,4 @@
-import { formatCurrency } from "lib/utils";
+import { formatCurrency, truncateString } from "lib/utils";
 import { useAddItem } from "lib/hooks/useAddItem";
 import React from "react";
 import { useShopping } from "lib/contexts/ShoppingContext";
@@ -46,7 +46,9 @@ export const ProductSideBar: React.FC<ProductSideBarProps> = ({
           <span className="block py-4 text-2xl text-green-500">
             {formatCurrency(price)}
           </span>
-          <p className="block max-w-lg text-gray-500">{description}</p>
+          <p className="block max-w-lg text-gray-500">
+            {truncateString(description, 250)}
+          </p>
           <div className="flex"></div>
         </div>
         <div className="my-8">
